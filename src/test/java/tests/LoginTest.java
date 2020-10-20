@@ -7,15 +7,17 @@ public class LoginTest extends BaseTest {
 
 
     @Description("AUTHORIZATION CHECK")
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void loginTest() {
         loginPage
                 .openPage()
-        .loginPositive("testponch@mail.ru", "123456789test");
+                .loginPositive("testponch@mail.ru", "123456789test");
         myAccountPage.isPageOpened();
+
     }
+
     @Description("ERROR CHECK FOR EMPTY LOGIN")
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void emptyLogin() {
         loginPage.openPage().
                 loginWithoutRedirect("", "").
@@ -25,7 +27,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Description("CHECK FOR ERRORS WITH EMPTY PASSWORD")
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void emptyPassword() {
         loginPage.openPage().
                 loginWithoutRedirect("testponch@mail.ru", "")
